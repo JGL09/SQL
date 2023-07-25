@@ -1,0 +1,25 @@
+--Creating a Table;
+CREATE TABLE Supplies (id INTEGER PRIMARY KEY, itemName TEXT, value INTEGER, aisle Integer, quantity INTEGER);
+
+--Inserting all supplies into Database;
+INSERT INTO Supplies VALUES (1, "Air Force 1", 100, 3, 11);
+INSERT INTO Supplies VALUES (2, "Nike Shirt", 25, 2, 220);
+INSERT INTO Supplies VALUES (3, "Nike Shorts", 35, 1, 453);
+INSERT INTO Supplies VALUES (4, "Nike Socks", 20, 4, 332);
+INSERT INTO Supplies VALUES (5, "Nike Underwear", 15, 2, 231);
+INSERT INTO Supplies VALUES (6, "Jordan 1's", 350, 3, 21);
+INSERT INTO Supplies VALUES (7, "Jordan Poster", 22, 3, 10);
+INSERT INTO Supplies VALUES (8, "Jordan Socks", 35, 3, 200);
+INSERT INTO Supplies VALUES (9, "Jordan 360's", 320, 3, 5);
+INSERT INTO Supplies VALUES (10, "Jordan 5's", 550, 3, 5);
+INSERT INTO Supplies VALUES (11, "Jordan 2's", 450, 3, 4);
+INSERT INTO Supplies VALUES (12, "MJ 1", 230, 4, 3);
+INSERT INTO SUpplies VALUES (13, "MJ2", 220, 4, 2);
+INSERT INTO Supplies VALUES (14, "MJ 3's Signed", 1000, 5, 1);
+INSERT INTO Supplies VALUES (15, "MJ 5's Signed", 750, 5, 1);
+
+--Selecting all values in each item and ordering by value descending;
+SELECT value FROM Supplies ORDER BY value desc;
+
+--Selecting the smallest VALUE in value from the table Supplies;
+SELECT MIN(value) FROM Supplies;
