@@ -1,4 +1,6 @@
 /* Astronaut Data Analysis */
+
+/* Created the Table of Data */
 CREATE TABLE astronauts(
    Name                TEXT PRIMARY KEY,
    Year                INTEGER,
@@ -46,13 +48,16 @@ INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,A
 INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,Alma_Mater,Undergraduate_Major,Graduate_Major,Military_Rank,Military_Branch,Space_Flights,Space_Flight_hr,Space_Walks,Space_Walks_hr,Missions,Death_Date,Death_Mission) VALUES ('John-David F. Bartoe',NULL,NULL,'Retired','11/17/1944','Abington, PA','Male','Lehigh University; Georgetown University','Physics','Physics',NULL,NULL,1,190,0,0,'STS 51-F (Challenger)',NULL,NULL);
 INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,Alma_Mater,Undergraduate_Major,Graduate_Major,Military_Rank,Military_Branch,Space_Flights,Space_Flight_hr,Space_Walks,Space_Walks_hr,Missions,Death_Date,Death_Mission) VALUES ('Charles A. Bassett II',1963,3,'Deceased','12/30/1931','Dayton, OH','Male','Texas Technological College','Electrical Engineering',NULL,'Captain','US Air Force',0,0,0,0,NULL,'2/28/1966',NULL);
 
+/* Found the Astronaut with the max number of space flights */
 SELECT Name, MAX(Space_Flights) AS "Most Flights From Sample" 
     FROM Astronauts;
-    
+
+/* Found the Astronauts with more than one Flight to Space */    
 SELECT Name, Space_Flights FROM astronauts
     GROUP BY Space_Flights
     HAVING Space_Flights > 1;
 
+/* Used the CASE method to classify each astronaut into a category based on the recency of their visit to space */
 SELECT count(*) AS 'Number of Astronauts',
     CASE
         WHEN Year > 1990 THEN 'Recent'
@@ -63,6 +68,7 @@ SELECT count(*) AS 'Number of Astronauts',
     END AS 'Recency_of_Flights' FROM astronauts
     Group BY Recency_of_Flights ORDER BY count(*);
 
+/* Used CASE method to classify each pilot into Male or Female and then find out the total astronauts in each gender */
 SELECT count(*) AS "Number of Astronauts",
     CASE
         WHEN Gender = 'Male' THEN 'Male'
@@ -71,6 +77,7 @@ SELECT count(*) AS "Number of Astronauts",
     END AS 'GENDER' FROM astronauts
     GROUP BY Gender;
 
+/* Used the CASE method and AND to classify each pilot into a rank based on their space flight hours */
 SELECT count(*) AS 'Number of Astronauts per Rank',
     CASE
         WHEN Space_Flight_hr > 0 AND Space_Flight_hr < 200 THEN 'Newbie'
@@ -82,7 +89,8 @@ SELECT count(*) AS 'Number of Astronauts per Rank',
     END AS 'Space_Flight_Ranks' FROM astronauts
     GROUP BY Space_Flight_Ranks
     ORDER BY count(*);
-    
+
+/* Used the HAVING method to find astronauts that have more than 500 hours of flights time and are also Female */
 SELECT Name AS "Female Pilot With 500+ hr's", Space_Flight_hr FROM astronauts
     GROUP BY Space_Flight_hr
     HAVING 
